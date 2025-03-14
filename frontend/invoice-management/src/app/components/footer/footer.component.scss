@@ -1,0 +1,12 @@
+:host {
+    footer {
+        background: var(--primary-010);
+        color: var(--white-010);
+        padding: 20px 30px;
+
+        a {
+            color: var(--white-010);
+            cursor: pointer;
+        }
+    }
+}

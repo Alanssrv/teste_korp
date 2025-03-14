@@ -1,0 +1,36 @@
+:host {
+    header {
+        background: var(--primary-010);
+        display: flex;
+        padding: 20px 30px;
+
+        h1 {
+            color: var(--white-010);
+        }
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+
+        margin-left: 10px;
+    }
+
+    ul {
+        display: flex;
+        gap: 10px;
+
+        li {
+            list-style-type: none;
+    
+            a {
+                text-decoration: none;
+                color: var(--white-010);
+    
+                &:hover {
+                    color: var(--white-001);
+                }
+            }
+        }
+    }
+}
