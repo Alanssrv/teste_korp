@@ -1,3 +1,4 @@
+using System.Data.Common;
 using Common.Database.Transaction;
 using Common.Database.Transaction.Base;
 using Common.Entity;
@@ -19,7 +20,7 @@ app.MapPost("/create", ([FromBody] JsonProducts jsonProduct) =>
     if (!isValid)
     {
         string errorMessage = string.Join(" | ", errors.Values.Select(values => values.First()));
-        Results.BadRequest( new { errorMessage } );
+        return Results.BadRequest( new { errorMessage } );
     }
     
     using var dbTransaction = new DatabaseTransaction();
@@ -30,7 +31,7 @@ app.MapPost("/create", ([FromBody] JsonProducts jsonProduct) =>
             Name = jsonProduct.Name,
             Code = jsonProduct.Code,
             CreationDate = DateTime.Now,
-            InventoryBalance = 1,
+            InventoryBalance = jsonProduct.InventoryBalance,
             Price = jsonProduct.Price
         };
 

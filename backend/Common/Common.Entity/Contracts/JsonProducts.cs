@@ -15,5 +15,9 @@ namespace Common.Entity.Contracts
         [Required]
         [ProductCode]
         public string Code { get; set; }
+
+        [Required]
+        [GreaterThanZero]
+        public int InventoryBalance { get; set; }
     }
 }
