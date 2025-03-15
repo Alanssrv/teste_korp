@@ -8,7 +8,7 @@ namespace Common.Entity.Contracts
         [ProductCode]
         public string Code { get; set; }
 
-        [MinValue(1)]
+        [GreaterThanZero]
         public int Quantity { get; set; }
     }
 }

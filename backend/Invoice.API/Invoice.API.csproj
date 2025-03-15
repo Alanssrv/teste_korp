@@ -16,4 +16,8 @@
     <ProjectReference Include="..\Common\Common.Util\Common.Util.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Mapper\" />
+  </ItemGroup>
+
 </Project>

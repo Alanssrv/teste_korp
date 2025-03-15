@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MinimalApis.Extensions" Version="0.11.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Common\Common.Database\Common.Database.csproj" />
     <ProjectReference Include="..\Common\Common.Entity\Common.Entity.csproj" />
     <ProjectReference Include="..\Common\Common.Util\Common.Util.csproj" />

@@ -32,5 +32,12 @@ namespace Common.Database.Transaction
 
             return context.Products.Where(p => p.Code == code).FirstOrDefault();
         }
+
+        public Product GetProductById(long id)
+        {
+            using var context = new AppDbContext();
+
+            return context.Products.Where(p => p.Id == id).FirstOrDefault();
+        }
     }
 }

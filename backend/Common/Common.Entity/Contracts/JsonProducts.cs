@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Common.Util.Validators;
 
 namespace Common.Entity.Contracts
 {
@@ -8,11 +9,11 @@ namespace Common.Entity.Contracts
         public string Name { get; set; }
 
         [Required]
-        [Range(0.01, double.MaxValue, ErrorMessage = "123")]
-        public double Price { get; set; }
+        [GreaterThanZero]
+        public decimal Price { get; set; }
 
         [Required]
-        [Length(20, 20)]
+        [ProductCode]
         public string Code { get; set; }
     }
 }

@@ -23,5 +23,9 @@ namespace Common.Database.Transaction
             _databaseTransaction.Context.InvoiceProducts.AddRange(invoiceProducts);
             _databaseTransaction.Context.SaveChanges();
         }
+
+        public List<InvoiceProduct> GetAllInvoiceProducts() {
+            return _databaseTransaction.Context.InvoiceProducts.ToList();
+        }
     }
 }

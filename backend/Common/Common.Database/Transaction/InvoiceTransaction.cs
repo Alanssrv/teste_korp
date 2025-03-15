@@ -18,5 +18,10 @@ namespace Common.Database.Transaction
             _databaseTransaction.Context.Invoice.Add(invoice);
             _databaseTransaction.Context.SaveChanges();
         }
+
+        public Invoice GetInvoiceById(long id)
+        {
+            return _databaseTransaction.Context.Invoice.Where(invoice => invoice.Id == id).FirstOrDefault();
+        }
     }
 }
