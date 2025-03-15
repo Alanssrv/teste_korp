@@ -1,1 +1,32 @@
-<p>products works!</p>
+<main>
+    <div class="listProductsHead">
+        <p>Lista de produtos</p>
+        <button  mat-raised-button class="btn" (click)="openModal()">Adicionar</button>
+    </div>
+    <ul>
+        @if (getProductList()?.length) {
+            <table class="productsTable">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Código</th>
+                    <th>Estoque</th>
+                  </tr>
+                </thead>
+                <tbody>
+                @for (item of getProductList(); track $index) {
+                    <tr>
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.price | currency:'BRL'}}</td>
+                        <td>{{item.code}}</td>
+                        <td>{{item.inventoryBalance}}</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+    </ul>
+</main>

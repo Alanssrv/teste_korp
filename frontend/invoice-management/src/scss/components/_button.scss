@@ -1,0 +1,16 @@
+.btn {
+    font-family: "Roboto Condensed", sans-serif;
+    padding: 5px 15px;
+    border-radius: 15px;
+
+    border: 2px solid var(--primary-015);
+    color: var(--primary-015);
+
+    background: transparent;
+
+    &:hover {
+        background: var(--primary-010);
+        color: var(--white-010);
+        cursor: pointer;
+    }
+}

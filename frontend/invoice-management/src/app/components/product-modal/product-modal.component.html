@@ -1,0 +1,26 @@
+<main>
+    <h2>Adicionar Produto</h2>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <label for="">
+            Name: 
+            <input type="text" formControlName="name" required>
+        </label>
+
+        <label for="">
+            Preço: 
+            <input type="text" formControlName="price" required>
+        </label>
+
+        <label for="">
+            Código: 
+            <input type="text" formControlName="code" required>
+        </label>
+
+        <label for="">
+            Estoque: 
+            <input type="text" formControlName="inventoryBalance" required>
+        </label>
+
+        <button class="btn" type="submit" [disabled]="!this.productForm.valid">Adicionar</button>
+    </form>
+</main>

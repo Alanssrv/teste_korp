@@ -1,22 +1,20 @@
 import { Routes } from '@angular/router';
+import InvoiceComponent from './pages/invoice/invoice.component';
+import NotFoundComponent from './pages/not-found/not-found.component';
 
 export const routes: Routes = [
     {
         path: '',
         loadComponent: () => import(
             './pages/products/products.component'
-        ).then()
+        ).then(p => p.ProductsComponent)
     },
     {
         path: 'invoice',
-        loadComponent: () => import(
-            './pages/invoice/invoice.component'
-        ).then()
+        component: InvoiceComponent
     },
     {
         path: '**',
-        loadComponent: () => import(
-            './pages/not-found/not-found.component'
-        ).then()
+        component: NotFoundComponent
     }
 ];

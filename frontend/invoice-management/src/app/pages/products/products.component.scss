@@ -1,0 +1,39 @@
+:host {
+    main {
+        margin: 10px 30px;
+    }
+
+    .listProductsHead {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 0;
+        font-size: 20px;
+        align-items: center;
+
+        button {
+            font-size: 16px;
+        }
+    }
+
+    .productsTable {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+      
+        th {
+            font-weight: bold;
+            background-color: var(--primary-010);
+            color: var(--white-001);
+            padding: 10px;
+        }
+      
+        td {
+            padding: 10px;
+            border: 1px solid var(--white-010);
+        }
+      
+        tr:hover {
+            background-color: var(--white-005);
+        }
+    }
+}
