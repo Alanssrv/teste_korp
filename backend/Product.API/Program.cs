@@ -22,9 +22,9 @@ app.MapPost("/create", ([FromBody] JsonProducts jsonProduct) =>
         Results.BadRequest( new { errorMessage } );
     }
     
+    using var dbTransaction = new DatabaseTransaction();
     try
     {
-        using var dbTransaction = new DatabaseTransaction();
         Product product = new Product()
         {
             Name = jsonProduct.Name,
@@ -35,17 +35,20 @@ app.MapPost("/create", ([FromBody] JsonProducts jsonProduct) =>
         };
 
         new ProductTransaction(dbTransaction).Insert(product);
+        dbTransaction.Commit();
 
         return Results.Ok(jsonProduct);
     }
     catch (DbUpdateException dbUpdateException)
     {
+        dbTransaction.Rollback();
         if (dbUpdateException.InnerException is SqlException sqlException && sqlException.Number == 2627)
             return Results.BadRequest(new { errorMessage = string.Format(ApiMessage.EXC02, jsonProduct.Code) });
         return Results.BadRequest(new { errorMessage = ApiMessage.EXC01 });
     }
     catch (Exception)
     {
+        dbTransaction.Rollback();
         return Results.BadRequest(new { errorMessage = ApiMessage.EXC01 });
     }
 });
