@@ -1,26 +1,22 @@
-﻿using Common.Entity;
+﻿using Common.Database.Transaction.Base;
+using Common.Entity;
 using Microsoft.Data.SqlClient;
 
 namespace Common.Database.Transaction
 {
     public class ProductTransaction
     {
+        private readonly DatabaseTransaction _databaseTransaction;
+
+        public ProductTransaction(DatabaseTransaction DatabaseTransaction)
+        {
+            _databaseTransaction = DatabaseTransaction;
+        }
+
         public void Insert(Product product)
         {
-            using var context = new AppDbContext();
-            using var transaction = context.Database.BeginTransaction();
-            try
-            {
-                context.Products.Add(product);
-                context.SaveChanges();
-
-                transaction.Commit();
-            }
-            catch (Exception ex)
-            {
-                transaction.Rollback();
-                throw;
-            }
+            _databaseTransaction.Context.Products.Add(product);
+            _databaseTransaction.Context.SaveChanges();
         }
 
         public List<Product> GettAllProducts()
@@ -28,6 +24,13 @@ namespace Common.Database.Transaction
             using var context = new AppDbContext();
 
             return context.Products.ToList();
+        }
+
+        public Product GetProductByCode(string code)
+        {
+            using var context = new AppDbContext();
+
+            return context.Products.Where(p => p.Code == code).FirstOrDefault();
         }
     }
 }

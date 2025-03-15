@@ -1,0 +1,27 @@
+﻿using Common.Database.Transaction.Base;
+using Common.Entity;
+
+namespace Common.Database.Transaction
+{
+    public class InvoiceProductsTransaction
+    {
+        private readonly DatabaseTransaction _databaseTransaction;
+
+        public InvoiceProductsTransaction(DatabaseTransaction databaseTransaction)
+        {
+            _databaseTransaction = databaseTransaction;
+        }
+
+        public void Insert(InvoiceProduct invoiceProduct)
+        {
+            _databaseTransaction.Context.InvoiceProducts.Add(invoiceProduct);
+            _databaseTransaction.Context.SaveChanges();
+        }
+
+        public void InsertMany(List<InvoiceProduct> invoiceProducts)
+        {
+            _databaseTransaction.Context.InvoiceProducts.AddRange(invoiceProducts);
+            _databaseTransaction.Context.SaveChanges();
+        }
+    }
+}

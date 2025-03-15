@@ -9,5 +9,7 @@
         public decimal Price { get; set; }
 
         public int InventoryBalance { get; set; }
+
+        public List<InvoiceProduct> InvoiceProducts { get; set; } = new List<InvoiceProduct>();
     }
 }

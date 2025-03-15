@@ -6,6 +6,8 @@ namespace Common.Database
     public class AppDbContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
+        public DbSet<Invoice> Invoice { get; set; }
+        public DbSet<InvoiceProduct> InvoiceProducts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -13,7 +15,7 @@ namespace Common.Database
             if (string.IsNullOrEmpty(connectionString))
                 throw new Exception("Environment connection string not provide");
 
-            optionsBuilder.UseSqlServer("Server=localhost\\MSSQLSERVER01;Database=TestKorp;Trusted_Connection=True;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer(connectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -22,6 +24,18 @@ namespace Common.Database
 
             modelBuilder.Entity<Product>()
                 .Property(p => p.Id);
+            modelBuilder.Entity<Invoice>()
+                .Property(p => p.Id);
+
+            modelBuilder.Entity<InvoiceProduct>()
+                .HasOne(ip => ip.Invoice)
+                .WithMany(i => i.InvoiceProducts)
+                .HasForeignKey(ip => ip.InvoiceId);
+
+            modelBuilder.Entity<InvoiceProduct>()
+                .HasOne(ip => ip.Product)
+                .WithMany(p => p.InvoiceProducts)
+                .HasForeignKey(ip => ip.ProductId);
         }
     }
 }
