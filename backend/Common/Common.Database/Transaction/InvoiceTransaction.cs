@@ -23,5 +23,10 @@ namespace Common.Database.Transaction
         {
             return _databaseTransaction.Context.Invoice.Where(invoice => invoice.Id == id).FirstOrDefault();
         }
+
+        public object? GetAllInvoices()
+        {
+            return _databaseTransaction.Context.Invoice.ToList();
+        }
     }
 }

@@ -70,12 +70,28 @@ app.MapPost("/create", ([FromBody] JsonInvoice jsonInvoice) => {
     }
 });
 
-app.MapGet("/all", () =>
+app.MapGet("/allInvoices", () =>
 {
     using var dbTransaction = new DatabaseTransaction();
     try
     {
-        var invoiceProducts = new InvoiceProductsTransaction(dbTransaction).GetAllInvoiceProducts();
+        var invoices = new InvoiceTransaction(dbTransaction).GetAllInvoices();
+
+        return Results.Ok(invoices);
+    }
+    catch (Exception)
+    {
+        return Results.BadRequest(new { errorMessage = ApiMessage.EXC01 });
+    }
+});
+
+
+app.MapGet("/invoiceProductsByInvoiceId/{id}", (int id) =>
+{
+    using var dbTransaction = new DatabaseTransaction();
+    try
+    {
+        var invoiceProducts = new InvoiceProductsTransaction(dbTransaction).GetInvoiceProductsByInvoiceId(id);
         invoiceProducts.ForEach((invoice) =>
         {
             invoice.Product = new ProductTransaction(dbTransaction).GetProductById(invoice.ProductId);

@@ -27,5 +27,10 @@ namespace Common.Database.Transaction
         public List<InvoiceProduct> GetAllInvoiceProducts() {
             return _databaseTransaction.Context.InvoiceProducts.ToList();
         }
+
+        public List<InvoiceProduct> GetInvoiceProductsByInvoiceId(int id)
+        {
+            return _databaseTransaction.Context.InvoiceProducts.Where(invoiceProduct => invoiceProduct.InvoiceId == id).ToList();
+        }
     }
 }
