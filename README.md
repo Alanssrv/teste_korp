@@ -47,3 +47,6 @@ O frontend foi desenvolvido utlizando [Angular](https://angular.dev/), na versã
 - Adicionar _tooltips_ para informar ações na tela
 - Adicionar tratamento para retentativas para erro de comunicação
 - Observalidade nos serviços - Logs de input
+
+## Próximos passos
+- Ações de atualizar e remover produtos e notas
