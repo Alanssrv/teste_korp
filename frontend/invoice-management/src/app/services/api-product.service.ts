@@ -35,7 +35,7 @@ export class ApiProductService {
       InventoryBalance: product.inventoryBalance
     }).pipe(
       catchError( (error: HttpErrorResponse) => {
-        return throwError(() => console.log(error));
+        return throwError(() => error);
       })
     );
   }
