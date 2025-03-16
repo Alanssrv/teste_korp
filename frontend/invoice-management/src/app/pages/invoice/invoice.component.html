@@ -1,1 +1,37 @@
-<p>invoice works!</p>
+<div class="container">
+    <div class="headPage">
+        <p>Lista de notas</p>
+        <button  mat-raised-button class="btn">Adicionar</button>
+    </div>
+    <ul>
+        @if (getInvoiceList()?.length) {
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Estado</th>
+                    <th style="text-align: center;">Detalhes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                @for (item of getInvoiceList(); track $index) {
+                    <tr>
+                        <td>{{item.id}}</td>
+                        @if (item.state == 0) {
+                            <td>Aberta</td>
+                        } @else {
+                            <td>Fechada</td>
+                        }
+                        <td style="text-align: center;">
+                            <button class="btnDetail" (click)="openDetailModal(item)">
+                                <mat-icon style="color: black;">remove_red_eye</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+    </ul>
+    
+</div>

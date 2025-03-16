@@ -1,4 +1,4 @@
-<main>
+<div class="container">
     <h2>Adicionar Produto</h2>
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
         <label for="">
@@ -23,4 +23,4 @@
 
         <button class="btn" type="submit" [disabled]="!this.productForm.valid">Adicionar</button>
     </form>
-</main>
+</div>

@@ -1,0 +1,26 @@
+<div class="container">
+    <h3>Nota fiscal ID: {{ groupedProducts[0].id }}</h3>
+    <table class="table">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Código</th>
+            <th>Quantidade</th>
+            <th>Preço unidade</th>
+            <th>Preço total</th>
+          </tr>
+        </thead>
+        <tbody>
+        @for (item of groupedProducts; track $index) {
+            <tr>
+                <td>{{item.name}}</td>
+                <td>{{item.code}}</td>
+                <td>{{item.totalQuantity}}</td>
+                <td>{{item.price | currency:'BRL'}}</td>
+                <td>{{item.totalPrice | currency:'BRL'}}</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+        
+</div>

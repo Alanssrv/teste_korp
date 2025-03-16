@@ -1,11 +1,11 @@
-<main>
-    <div class="listProductsHead">
+<div class="container">
+    <div class="headPage">
         <p>Lista de produtos</p>
         <button  mat-raised-button class="btn" (click)="openModal()">Adicionar</button>
     </div>
     <ul>
         @if (getProductList()?.length) {
-            <table class="productsTable">
+            <table class="table">
                 <thead>
                   <tr>
                     <th>ID</th>
@@ -29,4 +29,4 @@
             </table>
         }
     </ul>
-</main>
+</div>

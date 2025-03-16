@@ -21,7 +21,6 @@ export class ProductsComponent implements OnInit {
   public getProductList = this.#productApi.getProductList;
 
   ngOnInit(): void {
-    console.log(123);
     this.#productApi.httpProductList$().subscribe();
   }
 
@@ -33,7 +32,6 @@ export class ProductsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result: IProduct | undefined) => {
       if (result) {
-        console.log('Produto Adicionado:', result);
         this.#productApi.httpAddProduct$(result).pipe(
           concatMap(() => this.#productApi.httpProductList$())
         ).subscribe();
