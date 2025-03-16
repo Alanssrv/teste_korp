@@ -6,6 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { IInvoiceProduct } from '../../models/IInvoiceProduct.interface';
 import { IInvoice } from '../../models/IInvoice.interface';
 import { concatMap } from 'rxjs';
+import { AddInvoiceModalComponent } from '../../components/add-invoice-modal/add-invoice-modal.component';
+import { IProduct } from '../../models/IProduct.interface';
 
 @Component({
   selector: 'app-invoice',
@@ -34,5 +36,21 @@ export default class InvoiceComponent implements OnInit {
         });
       }
     );
+  }
+
+  openNewInvoiceModal() {
+    const dialogRef = this.#dialog.open(AddInvoiceModalComponent, {
+      data: this.getProductList()?.map(product => ({...product, selectedAmount: 0}))
+    });
+
+    dialogRef.afterClosed().subscribe((result: IProduct[] | undefined) => {
+      result = result!.filter(product => product.selectedAmount > 0);
+      if (result!.length > 0){
+        var codes: string[] = result!.flatMap(item => Array(item.selectedAmount).fill(item.code));
+        this.#invoiceApi.httAddInvoice$(codes).pipe(
+          concatMap(() => this.#invoiceApi.httpInvoiceList$())
+        ).subscribe();
+      }
+    });
   }
 }

@@ -1,7 +1,7 @@
 <div class="container">
     <div class="headPage">
         <p>Lista de notas</p>
-        <button  mat-raised-button class="btn">Adicionar</button>
+        <button  mat-raised-button class="btn" (click)="openNewInvoiceModal()">Adicionar</button>
     </div>
     <ul>
         @if (getInvoiceList()?.length) {
@@ -11,6 +11,7 @@
                     <th>ID</th>
                     <th>Estado</th>
                     <th style="text-align: center;">Detalhes</th>
+                    <th style="text-align: center;">Fechar nota</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -25,6 +26,13 @@
                         <td style="text-align: center;">
                             <button class="btnDetail" (click)="openDetailModal(item)">
                                 <mat-icon style="color: black;">remove_red_eye</mat-icon>
+                            </button>
+                        </td>
+                        <td style="text-align: center;">
+                            <button class="btnDetail">
+                                <mat-icon style="color: black;">
+                                    @if (item.state == 0) { done } @else { done_all }
+                                </mat-icon>
                             </button>
                         </td>
                     </tr>

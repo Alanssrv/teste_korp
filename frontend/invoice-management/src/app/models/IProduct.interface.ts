@@ -4,4 +4,5 @@ export interface IProduct {
     code: string;
     price: number;
     inventoryBalance: number;
+    selectedAmount: number;
 }

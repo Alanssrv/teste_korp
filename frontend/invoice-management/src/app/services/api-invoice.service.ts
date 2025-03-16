@@ -59,4 +59,20 @@ export class ApiInvoiceService {
       })
     );
   }
+
+  public httAddInvoice$(codes: string[]) : Observable<IInvoiceProduct[]> {
+    this.#setInvoiceProductsList.set(null);
+    
+    const invoiceBody = codes.map(code => ({
+      Code: code, Quantity: 1
+    }))
+
+    return this.#httpClient.post<IInvoiceProduct[]>(`${this.#invoiceUrl()}/create`,
+      {ProductsInvoice: invoiceBody}
+    ).pipe(
+      catchError( (error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );
+  }
 }

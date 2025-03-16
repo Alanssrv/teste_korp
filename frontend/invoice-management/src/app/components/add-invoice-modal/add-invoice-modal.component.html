@@ -1,0 +1,39 @@
+<div class="container">
+    <h3>Adicionar nova nota</h3>
+    <h4>Selecione os produtos:</h4>
+    <table class="table">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Código</th>
+            <th>Preço</th>
+            <th>Estoque</th>
+            <th style="text-align: center;">Selecionar</th>
+          </tr>
+        </thead>
+        <tbody>
+        @for (item of productList; track $index) {
+            <tr>
+                <td>{{item.name}}</td>
+                <td>{{item.code}}</td>
+                <td>{{item.price | currency:'BRL'}}</td>
+                <td>{{item.inventoryBalance}}</td>
+                <td>
+                    <div class="numeric-input">
+                        <button (click)="decrease(item)" [disabled]="item.selectedAmount == 0">-</button>
+                        <input 
+                            type="number" 
+                            [value]="item.selectedAmount" 
+                            [min]="0" 
+                            [max]="item.inventoryBalance" 
+                            readonly
+                        >
+                        <button (click)="increase(item)" [disabled]="item.selectedAmount == item.inventoryBalance">+</button>
+                    </div>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    <button style="width: 100%; margin-top: 10px;" class="btn" (click)="createInvoice()">Adicionar</button>
+</div>
