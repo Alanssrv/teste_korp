@@ -7,7 +7,19 @@ using Microsoft.AspNetCore.Mvc;
 using MiniValidation;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "_myAllowSpecificOrigins",
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:4200/");
+                      });
+});
+
 var app = builder.Build();
+
+app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().SetIsOriginAllowed(origin => true));
 
 app.MapPost("/create", ([FromBody] JsonInvoice jsonInvoice) => {
 
