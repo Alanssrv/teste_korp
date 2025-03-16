@@ -1,5 +1,5 @@
 # Gerenciamento de produtos e notas
-Esse projeto foi desenvolvido como parte do processo seletivo para vaga de desenvolvedor fullstack na Korp do grupo Viasoft do teste técnico para vaga na empresa [Korp](https://www.korp.com.br/) do grupo Viasoft
+Esse projeto foi desenvolvido como parte do processo seletivo para vaga de desenvolvedor fullstack na [Korp](https://www.korp.com.br/) do grupo Viasoft
 
 ## Descrição do Projeto
 Esse projeto solicita o desenvolvimento de aplicações que façam gerenciamento de produtos em estoque e de notas fiscais relacionandos os produtos, com a comunicação entre o site e os serviços, o projeto deve ser capaz de apresentar uma visualização dos produtos e notas, como também adicioná-las.
